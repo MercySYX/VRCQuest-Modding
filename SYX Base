@@ -1,0 +1,134 @@
+
+#region Using shit
+using MelonLoader;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnhollowerRuntimeLib;
+using UnhollowerRuntimeLib.XrefScans;
+using UnityEngine;
+using UnityEngine;
+using VRC;
+using VRC.Core;
+using VRC.DataModel;
+using VRC.SDKBase;
+using VRC.UI.Elements.Menus;
+using VRC.Udon;
+using UnityEngine.UI;
+using ReMod.Core.Managers;
+using ReMod.Core.Unity;
+using ReMod.Core.VRChat;
+using ReMod.Core.UI.QuickMenu;
+using System.Diagnostics;
+using VRC.Udon.Common.Interfaces;
+using VRC.SDK3.Components;
+using VRC.UI.Core.Styles;
+using VRC.Animation;
+using VRC.UI.Elements.Controls;
+using TMPro;
+using UnhollowerBaseLib;
+using ReMod.Core;
+using ReMod.Core.UI.QuickMenu;
+using ExitGames.Client.Photon;
+using System.Security.Policy;
+using Transmtn;
+using Transmtn.DTO;
+using syx.Handler;
+using syx.Handler;
+#endregion
+
+
+namespace SYX
+{
+
+
+
+
+    class Main : MelonMod
+    {
+       
+
+        #region Wait for UI
+
+       
+
+
+        public override void OnApplicationStart()// Don't mess with anything in here<3
+        {
+
+         
+            ClassInjector.RegisterTypeInIl2Cpp<EnableDisableListener>();
+
+            MelonCoroutines.Start(WaitForUI());
+
+
+        }
+
+
+        private IEnumerator WaitForUI()
+        {
+
+            yield return MenuEx.WaitForUInPatch();
+            UserInterface = MenuEx.userInterface;
+            SYXMenuStart();
+
+        }
+
+
+
+        public override void OnUpdate()
+        {
+
+        }
+
+        #endregion
+
+
+
+        #region SYXMenus
+
+        //You Ui and game objects<3
+        public static GameObject UserInterface;
+
+        public static UiManager _Ui;
+
+        public static ReMenuPage Credits;
+
+
+        #endregion
+
+
+
+
+
+
+        public static string Color = "#0018a1"; //Change #f8f8ff to your hex to change the color
+
+        public static void SYXMenuStart()//Put your ui in here<3
+        {
+
+
+
+
+
+
+
+
+            _Ui = new UiManager("SYX", Icon_Do.CreateSprite(Icons.Tab), true, true, Color);
+
+            var CC = _Ui.QMenu.AddMenuPage("MenuName", "Tooltip", Icon_Do.CreateSprite(Icons.Tab), Color);
+
+            CC.AddButton("ButtonName", "Tooltip", null, null, Color);
+        }
+    }
+}
+
+  
+
+
+
+
+
